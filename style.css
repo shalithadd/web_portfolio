@@ -519,3 +519,39 @@ footer {
 .footer-socials span {
   color: #555; /* Dark separator lines */
 }
+
+/* --- Back to Top Button --- */
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #3f51b5; /* Your theme medium blue */
+  color: #fff;
+  border: none;
+  border-radius: 50%; /* Makes it a circle */
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 2000; /* Ensures it sits on top of everything */
+
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+/* The class JS will add when you scroll down */
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  background-color: #1a237e; /* Darker blue on hover */
+  transform: translateY(-5px); /* Moves up slightly */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}

@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // ---- Footer Content Injection ----
+  // =========================================
+  // 1. Footer Content Injection
+  // =========================================
   fetch("footer.html")
     .then((response) => response.text())
     .then((data) => {
@@ -10,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => console.error("Error loading footer:", err));
 
-  // ---- Navigation Bar Loading and Highlighting ----
+  // =========================================
+  // 2. Navigation Bar Loading & Logic
+  // =========================================
   fetch("nav.html")
     .then((response) => response.text())
     .then((data) => {
@@ -18,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (navContainer) {
         navContainer.innerHTML = data;
 
-        // ---- Highlight current page ----
+        // A. Highlight current page
         const currentPath = window.location.pathname.split("/").pop();
         const navLinks = navContainer.querySelectorAll("a");
         navLinks.forEach((link) => {
@@ -28,11 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        // ---- Sticky Navigation + Name Fade-In ----
+        // B. Sticky Navigation + Name Fade-In
         const navbar = navContainer.querySelector(".navbar");
         const header = document.querySelector("header");
         const triggerHeight = header ? header.offsetHeight : 150;
 
+        // We combine the scroll logic here with the Back to Top logic later if we wanted,
+        // but keeping them separate is cleaner for maintenance.
         window.addEventListener("scroll", () => {
           if (window.scrollY > triggerHeight) {
             navbar.classList.add("sticky");
@@ -44,25 +50,50 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => console.error("Error loading navigation:", err));
 
-  // ---- Contact Form Logic ----
-  const contactForm = document.getElementById('contact-form');
-
-  // This 'if' check ensures the code only runs on contact.html
+  // =========================================
+  // 3. Contact Form Logic (Only runs if form exists)
+  // =========================================
+  const contactForm = document.getElementById("contact-form");
   if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Stop the form from reloading the page
-
-      const to = document.getElementById('email-to').value;
-      const subject = document.getElementById('email-subject').value;
-      const fromEmail = document.getElementById('email-from').value;
-      const bodyText = document.getElementById('email-body').value;
-
-      // Construct the mailto link
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const to = document.getElementById("email-to").value;
+      const subject = document.getElementById("email-subject").value;
+      const fromEmail = document.getElementById("email-from").value;
+      const bodyText = document.getElementById("email-body").value;
       const body = `From: ${fromEmail}\n\n${bodyText}`;
-      const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Open the user's email client
-      window.location.href = mailtoLink;
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
     });
   }
+
+  // =========================================
+  // 4. Back to Top Button Logic
+  // =========================================
+
+  // Create the button element using JS
+  const backToTopBtn = document.createElement("button");
+  backToTopBtn.id = "back-to-top";
+  backToTopBtn.innerHTML = "&#8679;"; // HTML Code for an Up Arrow
+  backToTopBtn.title = "Go to top";
+  document.body.appendChild(backToTopBtn); // Add it to the page
+
+  // Show/Hide button on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      // Show after scrolling down 300px
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  });
+
+  // Scroll to top when clicked
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // This gives the nice gliding effect
+    });
+  });
 });
