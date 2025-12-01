@@ -12,7 +12,7 @@ body {
   color: #333;
 }
 
-/* Header */
+/* --- Header --- */
 header {
   background-color: #1a237e; /* Dark Blue */
   color: #fff;
@@ -42,14 +42,14 @@ header h1 span {
 
 /* --- Navigation --- */
 
-/* This is the placeholder in your HTML. THIS is what needs to be sticky. */
+/* The sticky wrapper */
 nav#nav-container {
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* This is the content loaded from nav.html. It handles the VISUALS, not the stickiness. */
+/* The visual navbar */
 .navbar {
   width: 100%;
   min-height: 60px;
@@ -57,16 +57,21 @@ nav#nav-container {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  justify-content: center; /* Forces the links to the exact center */
+  position: relative; /* Establishing a boundary for the absolute name */
+  padding: 0 20px;
 }
 
-/* Navbar left section for name */
+/* The Left Name Container - Positioned Absolutely */
 .nav-left {
-  position: absolute;
+  position: absolute; /* Takes it out of the flow so it doesn't push the links */
   left: 20px;
+  height: 100%; /* Full height to help align text vertically */
+  display: flex;
+  align-items: center;
 }
 
+/* The name itself (Hidden by default) */
 .nav-name {
   color: #fff;
   font-weight: 600;
@@ -74,9 +79,10 @@ nav#nav-container {
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-/* When navbar becomes sticky */
+/* When navbar becomes sticky, show the name */
 .navbar.sticky .nav-name {
   opacity: 1;
   transform: translateY(0);
@@ -85,12 +91,11 @@ nav#nav-container {
 /* Navigation links layout */
 ul.nav-links {
   list-style: none;
-  padding: 0 20px;
+  padding: 0;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 ul.nav-links li {
@@ -108,7 +113,6 @@ ul.nav-links a:hover {
   color: #bbdefb;
 }
 
-/* Active/current page link */
 ul.nav-links a.active {
   color: #fff;
   font-weight: bold;
@@ -116,11 +120,6 @@ ul.nav-links a.active {
   padding-bottom: 5px;
 }
 
-ul.nav-links a.active:hover {
-  color: #fff;
-}
-
-/* Social links */
 ul.nav-links .social-links {
   margin-left: 20px;
 }
@@ -130,7 +129,12 @@ ul.nav-links .social-links a {
   margin-right: 5px;
 }
 
-/* Main Content and Sections */
+/* Hide the spacer if it exists in HTML */
+.nav-right-spacer {
+  display: none;
+}
+
+/* --- Main Content and Sections --- */
 main {
   padding: 2rem;
   max-width: 900px;
@@ -189,7 +193,118 @@ h2 {
   padding-bottom: 10px;
 }
 
-/* Footer */
+/* --- Technical Skills Styling (New) --- */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.skill-category {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1;
+  min-width: 250px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: #3f51b5;
+}
+
+.skill-category h3 {
+  color: #1a237e;
+  margin-top: 0;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-tags span {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #3f51b5;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: default;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.skill-tags span:hover {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+/* --- Contact Form Styling --- */
+.contact-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input[readonly] {
+  background-color: #f0f2f5;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+}
+
+.contact-form button[type="submit"] {
+  margin-top: 1rem;
+  width: fit-content;
+  cursor: pointer;
+}
+
+/* --- Footer --- */
 footer {
   text-align: center;
   padding: 2rem 0;
@@ -291,7 +406,45 @@ footer a:hover {
   margin-bottom: 15px;
 }
 
-/* Responsive design */
+/* --- Buttons & Links --- */
+/* JAMK link */
+.jamk-web-link {
+  text-decoration: none;
+  color: #3f51b5;
+  transition: color 0.3s ease;
+}
+
+.jamk-web-link:hover {
+  color: #fff;
+  text-decoration: underline;
+  background-color: #050e77;
+}
+
+/* GitHub / Action Button Style */
+.github-links {
+  display: inline-block;
+  background-color: #3f51b5;
+  color: #fff !important;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  border: none; /* Reset for button elements */
+  font-size: 1rem; /* Reset for button elements */
+}
+
+.github-links:hover {
+  background-color: #1a237e;
+  color: #fff;
+}
+
+.github-links:visited {
+  color: #fff;
+}
+
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
   .about-me-intro {
     flex-direction: column;
@@ -308,102 +461,27 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 
+  /* Nav adjustments for mobile */
   .nav-left {
     position: static;
     text-align: center;
   }
 
+  /* On mobile, stack things or simplify the layout if needed. 
+     Currently keeping the name hidden until sticky on mobile too. */
   .nav-name {
     display: block;
-    opacity: 1;
-    transform: none;
-    margin-bottom: 10px;
   }
-}
 
-/* JAMK link */
-.jamk-web-link {
-  text-decoration: none;
-  color: #3f51b5;
-  transition: color 0.3s ease;
-}
+  /* Hide the right spacer on very small screens if space is tight */
+  .nav-right-spacer {
+    display: none;
+  }
 
-.jamk-web-link:hover {
-  color: #fff;
-  text-decoration: underline;
-  background-color: #050e77;
-}
-
-/* GitHub link buttons */
-.github-links {
-  display: inline-block;
-  background-color: #3f51b5;
-  color: #fff !important;
-  padding: 8px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  margin-top: 15px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.github-links:hover {
-  background-color: #1a237e;
-  color: #fff;
-}
-
-.github-links:visited {
-  color: #fff;
-}
-
-/* --- Contact Form Styling --- */
-.contact-form {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Style for readonly fields to look intentional */
-.contact-form input[readonly] {
-  background-color: #f0f2f5;
-  color: #555;
-  cursor: not-allowed;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #3f51b5;
-  box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
-}
-
-/* The submit button */
-.contact-form button[type="submit"] {
-  margin-top: 1rem;
-  width: fit-content; /* Makes the button only as wide as its text */
-  cursor: pointer;
+  /* Make left column take full width to center the name if spacer is hidden */
+  .nav-left {
+    flex: 0 0 auto;
+    position: absolute;
+    left: 10px;
+  }
 }
