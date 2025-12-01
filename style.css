@@ -446,43 +446,59 @@ footer a:hover {
 
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
+  /* 1. Column Layout for About Me section */
   .about-me-intro {
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .photo-container {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px; /* Slightly smaller photo on mobile */
+    margin-bottom: 20px;
   }
 
+  /* 2. Grid Layouts: Force single column */
   .project-grid,
   .hobbies-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Nav adjustments for mobile */
+  /* 3. NAVIGATION FIXES */
+
+  /* Hide the absolute positioned name on mobile to prevent overlap */
   .nav-left {
-    position: static;
-    text-align: center;
-  }
-
-  /* On mobile, stack things or simplify the layout if needed. 
-     Currently keeping the name hidden until sticky on mobile too. */
-  .nav-name {
-    display: block;
-  }
-
-  /* Hide the right spacer on very small screens if space is tight */
-  .nav-right-spacer {
     display: none;
   }
 
-  /* Make left column take full width to center the name if spacer is hidden */
-  .nav-left {
-    flex: 0 0 auto;
-    position: absolute;
-    left: 10px;
+  /* Allow the navbar to grow if links wrap */
+  .navbar {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  /* Allow links to wrap to a second line if screen is very small */
+  ul.nav-links {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Reduce spacing between links so they fit better */
+  ul.nav-links li {
+    margin: 5px 8px;
+  }
+
+  /* Slightly reduce font size for links */
+  ul.nav-links a {
+    font-size: 0.95rem;
+  }
+
+  /* Reduce the gap before social icons */
+  ul.nav-links .social-links {
+    margin-left: 10px;
+    margin-top: 0; /* Ensure it aligns with text links */
   }
 }
 
