@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shalitha Dehigaspitiyage - Contact</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="../media/SD_icon.ico">
+    <link rel="icon" type="image/x-icon" href="../media/SD_icon.ico" />
   </head>
   <body>
     <!-- Your standard header -->
@@ -80,29 +80,5 @@
     <footer id="my-footer"></footer>
 
     <script src="loadContent.js"></script>
-
-    <!-- JavaScript to handle the form submission -->
-    <script>
-      document
-        .getElementById("contact-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Stop the form from reloading the page
-
-          const to = document.getElementById("email-to").value;
-          const subject = document.getElementById("email-subject").value;
-          const fromEmail = document.getElementById("email-from").value;
-          const bodyText = document.getElementById("email-body").value;
-
-          // Construct the mailto link
-          // We add the sender's email to the top of the body for context
-          const body = `From: ${fromEmail}\n\n${bodyText}`;
-          const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(
-            subject
-          )}&body=${encodeURIComponent(body)}`;
-
-          // Open the user's email client
-          window.location.href = mailtoLink;
-        });
-    </script>
   </body>
 </html>

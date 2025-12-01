@@ -30,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ---- Sticky Navigation + Name Fade-In ----
         const navbar = navContainer.querySelector(".navbar");
-
-        // Use header height as scroll trigger threshold
         const header = document.querySelector("header");
         const triggerHeight = header ? header.offsetHeight : 150;
 
@@ -45,4 +43,26 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .catch((err) => console.error("Error loading navigation:", err));
+
+  // ---- Contact Form Logic ----
+  const contactForm = document.getElementById('contact-form');
+
+  // This 'if' check ensures the code only runs on contact.html
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Stop the form from reloading the page
+
+      const to = document.getElementById('email-to').value;
+      const subject = document.getElementById('email-subject').value;
+      const fromEmail = document.getElementById('email-from').value;
+      const bodyText = document.getElementById('email-body').value;
+
+      // Construct the mailto link
+      const body = `From: ${fromEmail}\n\n${bodyText}`;
+      const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Open the user's email client
+      window.location.href = mailtoLink;
+    });
+  }
 });
