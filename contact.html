@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shalitha Dehigaspitiyage - Contact</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Your standard header -->
+    <header>
+      <h1>Shalitha Dehigaspitiyage<span>Aspiring ICT Student</span></h1>
+    </header>
+
+    <!-- The navigation bar will be loaded here by your script -->
+    <nav id="nav-container"></nav>
+
+    <main>
+      <!-- Page Title Section -->
+      <section class="page-title-section">
+        <h1>Contact Me</h1>
+      </section>
+
+      <!-- Main Contact Section with the new form -->
+      <section>
+        <h2>Get in Touch</h2>
+        <p>
+          Have a question or want to work together? Fill out the form below, and
+          it will open in your default email client, ready to send.
+        </p>
+
+        <!-- The Contact Form -->
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="email-from">Your Email:</label>
+            <input
+              type="email"
+              id="email-from"
+              name="from"
+              placeholder="your.email@example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email-to">To:</label>
+            <input
+              type="text"
+              id="email-to"
+              value="shalitha.dehigaspitiyage@gmail.com"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="email-subject">Subject:</label>
+            <input
+              type="text"
+              id="email-subject"
+              value="Inquiry from Portfolio Website"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="email-body">Message:</label>
+            <textarea
+              id="email-body"
+              name="body"
+              rows="8"
+              placeholder="Hello Shalitha,"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="github-links">
+            Open in Email Client & Send
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer id="my-footer"></footer>
+
+    <script src="loadContent.js"></script>
+
+    <!-- JavaScript to handle the form submission -->
+    <script>
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Stop the form from reloading the page
+
+          const to = document.getElementById("email-to").value;
+          const subject = document.getElementById("email-subject").value;
+          const fromEmail = document.getElementById("email-from").value;
+          const bodyText = document.getElementById("email-body").value;
+
+          // Construct the mailto link
+          // We add the sender's email to the top of the body for context
+          const body = `From: ${fromEmail}\n\n${bodyText}`;
+          const mailtoLink = `mailto:${to}?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(body)}`;
+
+          // Open the user's email client
+          window.location.href = mailtoLink;
+        });
+    </script>
+  </body>
+</html>
