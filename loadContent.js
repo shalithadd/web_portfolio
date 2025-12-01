@@ -57,14 +57,18 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      const to = document.getElementById("email-to").value;
+
+      // 1. Define the recipient email
+      const recipient = "shalitha.dehigaspitiyage@gmail.com";
+
+      // 2. Get values from the HTML
       const subject = document.getElementById("email-subject").value;
-      const fromEmail = document.getElementById("email-from").value;
       const bodyText = document.getElementById("email-body").value;
-      const body = `From: ${fromEmail}\n\n${bodyText}`;
-      window.location.href = `mailto:${to}?subject=${encodeURIComponent(
+
+      // 3. Construct the mailto link
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
         subject
-      )}&body=${encodeURIComponent(body)}`;
+      )}&body=${encodeURIComponent(bodyText)}`;
     });
   }
 
